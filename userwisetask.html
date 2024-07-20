@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      fetch("https://jsonplaceholder.typicode.com/todos")
+        .then(function (value) {
+          return value.json();
+        })
+        .then(function (value) {
+          preFunction(value);
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
+
+      function preFunction(abc) {
+        let p = abc.reduce(function (pre, cur, index, array) {
+          console.log(pre, cur, index, array);
+          const findUser = pre.find(function (fvalue) {
+            return fvalue.userId == cur.userId;
+          });
+        }, []);
+      }
+    </script>
+  </body>
+</html>
