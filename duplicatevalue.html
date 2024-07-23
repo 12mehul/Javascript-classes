@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="dispaly"></div>
+    <script>
+      let abc = [2, 3, 4, 5, 6, 6];
+      //   let newArr = abc.splice(5, 1);
+      let newArr = [...new Set(abc)];
+      console.log(newArr);
+      
+      console.log(abc);
+    </script>
+  </body>
+</html>

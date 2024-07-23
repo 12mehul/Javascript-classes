@@ -5,16 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-      let abc = [1, 2, 3, 4, -6];
-      let p = abc.some(function (v, index) {
-        return v > 3;
-      });
-      let b = abc.every(function (v, index) {
-        return v > 0;
-      });
-      let a = abc.slice(-2, 1);
-      console.log(p);
-      console.log(b);
+      let abc = [1, 2, 3, 4, 1];
+      console.log(abc);
+
+      // let a = abc.some(function (v, index) {
+      //   return v > 0;
+      // });
+      // let b = abc.every(function (v, index) {
+      //   return v > 0;
+      // });
+      // let c = abc.slice(-4, -1);
+      // let d = abc.splice(3, 2, 8);
+      // let e = abc.unshift(4, 2);
+      // let f = abc.at(2)
+      // let g = abc.fill(5, 2, 3);
+      // let h = abc.findIndex(function (v, index) {
+      //   return v > 5;
+      // });
+      // let i = abc.findLast(function (v, index) {
+      //   return v > 2;
+      // });
+      // let j = abc.findLastIndex(function (v, index) {
+      //   return v > 3;
+      // });
+      // let k = abc.includes(5);
+      // let l = abc.reduce((acc, cur) => acc + cur, 2);
+      // let m = "This is the data";
+      // console.log(m.substring(1, 8));
+      // console.log(m.substr(2, 8));
+
+      // let op = "8141158064";
+      // let n = op.slice(-3).padStart(op.length, "*");
+      // let o = op.slice(3).padEnd(op.length, "*");
+
+      let p = "ABC PQR TYU";
+      let ap = p.indexOf(" ", p.indexOf(" ") + 1);
+      let pp = `${p.at(0)}.${p.substr(p.indexOf(" ") + 1, 1)}.${p.substr(
+        ap + 1,
+        1
+      )}`;
+
+      let name = "firstname middlename lastname";
+      let ad = name.indexOf(" ", name.indexOf(" ") + 1);
+      let ac = `${name.at(0)}-${name.substr(
+        name.indexOf(" ") + 1,
+        1
+      )}-${name.substr(ad + 1)}`;
+
+      console.log(ac);
+      // console.log(r);
+
+      let q = "this is the javascript This this";
+      let r = q.replace(/This/gi, "that");
+
+      let abcd = "The THe The THe";
+      let pq = abcd.matchAll(/The/gi);
+      let ooo = Array.from(pq);
+
+      console.log(ooo);
+
+      let products = [];
+      let data = "1,2,3";
+      products.push(data);
     </script>
   </head>
   <body></body>

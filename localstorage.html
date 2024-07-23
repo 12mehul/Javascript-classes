@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="firstname" />
+    <input type="text" id="lastname" />
+    <button onclick="saveInfo()">Save</button>
+    <div id="display"></div>
+
+    <script>
+      function saveInfo() {
+        let op = {
+          firstname: document.getElementById("firstname").value,
+          lastname: document.getElementById("lastname").value,
+        };
+        localStorage.setItem("name", JSON.stringify(op));
+        displayInfo();
+      }
+
+      function displayInfo() {
+        let abc = localStorage.getItem("name");
+        let obj = JSON.parse(abc);
+        document.getElementById(
+          "display"
+        ).innerHTML = `<p>${obj.firstname}</p> <p>${obj.lastname}</p>`;
+      }
+    </script>
+  </body>
+</html>

@@ -93,6 +93,9 @@
                     <div class="container-fluid mt-3">
                       <h3>${product.Title}</h3>
                       <p id="${index}">${isReadMore[index] ? product.Plot.concat(`...<span onclick="manageReadMore(${index})">Read Less</span>`) : product.Plot.slice(0, 30).concat(`...<span onclick="manageReadMore(${index})">Read More</span>`)}</p>
+                      <span class="mb-3">${product.imdbID
+                        .slice(-3)
+                        .padStart(product.imdbID.length, "*")}</span>
                     </div>
               </div>`;
         });
