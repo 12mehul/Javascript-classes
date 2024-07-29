@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container mt-3">
+      <!-- title -->
+      <div class="row">
+        <div class="col-xl-12 textCenter">
+          <h1>Welcome to product page</h1>
+        </div>
+      </div>
+      <div class="row">
+        <!-- filter buttons -->
+        <div class="col-xl-12">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand fw-semibold" href="#">Category</a>
+              <!-- menu items -->
+              <div
+                class="collapse navbar-collapse d-flex gap-3"
+                id="navbarSupportedContentBtn"
+              ></div>
+              <form class="d-flex" role="search">
+                <input
+                  class="form-control"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <!-- Product item -->
+      <div class="row mt-3">
+        <!-- filter buttons -->
+        <div class="col-xl-12">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <h4 class="navbar-brand fw-semibold">Filter</h4>
+              <div class="d-flex align-items-baseline gap-2">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="sortProductByPrice('price','asc')"
+                >
+                  Price Low To High
+                </button>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="sortProductByPrice('price','desc')"
+                >
+                  Price High To Low
+                </button>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="sortProductByName('title','asc')"
+                >
+                  Prodcut A To Z
+                </button>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="sortProductByName('title','desc')"
+                >
+                  Product Z To A
+                </button>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="checkOut()"
+                >
+                  Check Out
+                </button>
+              </div>
+            </div>
+          </nav>
+          <section class="mt-3">
+            <div class="container">
+              <h3 class="fw-semibold mb-4">Shopping Cart</h3>
+              <div
+                class="card rounded-3 w-100 mb-4"
+                id="addToCart_display"
+              ></div>
+            </div>
+          </section>
+          <div
+            class="row justify-content-between mt-5"
+            id="product_details"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- javascript -->
+    <script src="./index.js"></script>
+  </body>
+</html>
