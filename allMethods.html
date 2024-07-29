@@ -38,35 +38,75 @@
       // let n = op.slice(-3).padStart(op.length, "*");
       // let o = op.slice(3).padEnd(op.length, "*");
 
-      let p = "ABC PQR TYU";
-      let ap = p.indexOf(" ", p.indexOf(" ") + 1);
-      let pp = `${p.at(0)}.${p.substr(p.indexOf(" ") + 1, 1)}.${p.substr(
-        ap + 1,
-        1
-      )}`;
+      // let p = "ABC PQR TYU";
+      // let ap = p.indexOf(" ", p.indexOf(" ") + 1);
+      // let pp = `${p.at(0)}.${p.substr(p.indexOf(" ") + 1, 1)}.${p.substr(
+      //   ap + 1,
+      //   1
+      // )}`;
 
-      let name = "firstname middlename lastname";
-      let ad = name.indexOf(" ", name.indexOf(" ") + 1);
-      let ac = `${name.at(0)}-${name.substr(
-        name.indexOf(" ") + 1,
-        1
-      )}-${name.substr(ad + 1)}`;
+      // let name = "firstname middlename lastname";
+      // let ad = name.indexOf(" ", name.indexOf(" ") + 1);
+      // let ac = `${name.at(0)}-${name.substr(
+      //   name.indexOf(" ") + 1,
+      //   1
+      // )}-${name.substr(ad + 1)}`;
 
-      console.log(ac);
+      // console.log(ac);
       // console.log(r);
 
-      let q = "this is the javascript This this";
-      let r = q.replace(/This/gi, "that");
+      // let q = "this is the javascript This this";
+      // let r = q.replace(/This/gi, "that");
 
-      let abcd = "The THe The THe";
-      let pq = abcd.matchAll(/The/gi);
-      let ooo = Array.from(pq);
+      // let abcd = "The THe The THe";
+      // let pq = abcd.matchAll(/The/gi);
+      // let ooo = Array.from(pq);
 
-      console.log(ooo);
+      // console.log(ooo);
 
-      let products = [];
-      let data = "1,2,3";
-      products.push(data);
+      // let products = [];
+      // let data = "1,2,3";
+      // products.push(data);
+
+      // let points = [40, 100, 1, 5, 25, 100];
+      // points.sort(function (a, b) {
+      //   return a - b;
+      // });
+      // console.log(points);
+
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      let date = new Date();
+      let month = days[date.getDay()];
+      let dateTime = date.getTimezoneOffset();
+      console.log(date.toLocaleDateString("hi-In", options));
     </script>
   </head>
   <body></body>
