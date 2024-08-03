@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="w-full flex flex-col gap-3 items-center justify-center">
+      <h2
+        class="mt-3 flex items-center justify-center text-red-500 font-bold text-2xl"
+      >
+        Drag And Drop Add To Cart
+      </h2>
+      <h3 class="text-xl font-bold">Cart</h3>
+      <div
+        class="mt-3 w-[87%] flex items-start p-3 border border-gray-400 rounded-lg"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      >
+        <div id="cart-items" class="flex flex-col gap-3"></div>
+      </div>
+      <div
+        id="product-list"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center justify-center gap-3"
+      ></div>
+    </div>
+
+    <script>
+      let products = [];
+      let cartItems = [];
+
+      fetch("https://fakestoreapi.com/products")
+        .then((res) => {
+          return res.json();
+        })
+        .then((val) => {
+          products = val;
+          displayInfo();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      function displayInfo() {
+        const display = products.map(function (value, index) {
+          return `
+            <div
+            class="w-80 flex flex-col gap-3 h-full border border-gray-400 rounded-lg p-2"
+            ondragstart="dragStart(event)"
+            draggable="true"
+            id="${value.id}"
+          >
+            <div class="flex items-center justify-center">
+              <img src="${value.image}" alt="img" class="rounded-lg w-56 h-56" />
+            </div>
+            <h2 class="flex items-start text-blue-800 font-bold text-2xl">
+              ${value.title}
+            </h2>
+            <p
+              class="flex items-center justify-center text-gray-900 font-normal text-lg"
+            >
+              ${value.description}
+            </p>
+            <div class="flex gap-3">
+              <span class="text-gray-600 font-normal text-lg">Category:</span>
+              <span class="text-gray-800 font-medium text-lg capitalize"
+                >${value.category}</span
+              >
+            </div>
+            <div class="flex gap-4">
+              <div class="flex gap-3">
+                <span class="text-gray-600 font-normal text-lg">Rating:</span>
+                <span class="text-gray-800 font-medium text-lg"
+                  >${value.rating.rate}</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <span class="text-gray-600 font-normal text-lg">Price:</span>
+                <span class="text-gray-800 font-medium text-lg">${value.price}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        });
+        document.getElementById("product-list").innerHTML = display.join(" ");
+      }
+
+      function addItem(productId) {
+        const product = products.find((value) => {
+          return value.id == productId;
+        });
+        const productExistCart = cartItems.find((value) => {
+          return value.id == productId;
+        });
+
+        if (!productExistCart) {
+          product.qty = 1;
+          cartItems.push(product);
+        } else {
+          productExistCart.qty = productExistCart.qty + 1;
+        }
+        addItemToCart();
+      }
+
+      function dragStart(event) {
+        event.dataTransfer.setData("Card", event.target.id);
+      }
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        const productId = event.dataTransfer.getData("Card");
+        addItem(productId);
+      }
+
+      //Display add to cart product
+      function addItemToCart() {
+        const displayCart = cartItems.map((value) => {
+          return `
+            <div
+            class="w-full flex gap-5 h-full border border-gray-400 rounded-lg p-2"
+            id="${value.id}"
+          >
+            <div class="flex items-center justify-center">
+              <img src="${value.image}" alt="img" class="rounded-lg w-24 h-24" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <h2 class="flex items-start text-blue-800 font-bold text-2xl">
+                ${value.title}
+              </h2>
+              <div class="flex gap-3">
+                <span class="text-gray-600 font-normal text-lg">Qty:</span>
+                <span class="text-gray-800 font-medium text-lg capitalize"
+                  >${value.qty}</span
+                >
+              </div>
+              <div class="flex gap-4">
+                <div class="flex gap-3">
+                  <span class="text-gray-600 font-normal text-lg">Rating:</span>
+                  <span class="text-gray-800 font-medium text-lg"
+                    >${value.rating.rate}</span
+                  >
+                </div>
+                <div class="flex gap-3">
+                  <span class="text-gray-600 font-normal text-lg">Price:</span>
+                  <span class="text-gray-800 font-medium text-lg">${value.price}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          `;
+        });
+        document.getElementById("cart-items").innerHTML = displayCart.join("");
+      }
+    </script>
+  </body>
+</html>
