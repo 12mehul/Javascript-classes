@@ -19,8 +19,6 @@
             class="form-control"
             placeholder="Enter the value"
             id="searchInput"
-            name="search"
-            value=""
           />
         </div>
         <button type="submit" onclick="myFunction()" class="btn btn-primary">
@@ -39,7 +37,7 @@
         })
         .then(function (value) {
           products = value;
-          displayInfo();
+          displayInfo(products);
         })
         .catch(function (e) {
           console.log(e);
@@ -47,19 +45,19 @@
 
       function myFunction() {
         const filteredData = document.getElementById("searchInput").value;
-        const newFilteredData = products.filter(
-          (value) => value.Plot == filteredData
-        );
-        console.log(newFilteredData);
+        const newFilteredData = products.filter((val) => {
+          return Object.values(val).toString().indexOf(filteredData) >= 0;
+        });
+        displayInfo(newFilteredData);
       }
 
       function manageReadMore(index) {
         isReadMore[index] = !isReadMore[index];
-        displayInfo();
+        displayInfo(products);
       }
 
-      function displayInfo() {
-        const data = products.map(function (product, index) {
+      function displayInfo(abc) {
+        const data = abc.map(function (product, index) {
           return `
               <div class="col-4" id="${index}">
                   <div id="demo${index}" class="carousel slide" data-bs-ride="carousel">

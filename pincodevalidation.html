@@ -29,17 +29,22 @@
     </div>
     <script>
       function checkValidation(name, value) {
-        const pincodeRegex = /^([0-9]$).{6}$/;
+        const onlyNumbersRegex = /^[0-9]*$/;
+        const exactSixDigitsRegex = /^[0-9]{6}$/;
+
         switch (name) {
           case "pincode":
-            {
-              if (!value) {
-                document.getElementById("error-pincode").innerHTML =
-                  "Enter the Pincode";
-              } else if (!pincodeRegex.test(value)) {
-                document.getElementById("error-pincode").innerHTML =
-                  "Pincode should contain only numbers";
-              }
+            if (!value) {
+              document.getElementById("error-pincode").innerHTML =
+                "Enter the Pincode";
+            } else if (!onlyNumbersRegex.test(value)) {
+              document.getElementById("error-pincode").innerHTML =
+                "Pincode should contain only numbers";
+            } else if (!exactSixDigitsRegex.test(value)) {
+              document.getElementById("error-pincode").innerHTML =
+                "Pincode should be exactly six digits";
+            } else {
+              document.getElementById("error-pincode").innerHTML = "";
             }
             break;
           default:
