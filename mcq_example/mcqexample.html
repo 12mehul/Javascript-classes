@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="w-full flex flex-col gap-3 items-center justify-center">
+      <h2
+        class="mt-3 flex items-center justify-center text-red-500 font-bold text-2xl"
+      >
+        Multiple Choice Questions JavaScript
+      </h2>
+      <div id="mcq_data" class="mt-5 flex flex-col gap-3"></div>
+      <div class="flex items-center justify-center gap-3">
+        <button
+          id="prevBtn"
+          class="p-2 rounded-md bg-sky-600 text-white font-semibold hover:bg-sky-700"
+        >
+          Prev
+        </button>
+        <button
+          id="nextBtn"
+          class="p-2 rounded-md bg-sky-600 text-white font-semibold hover:bg-sky-700"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+    <script>
+      let data = [];
+      let currentQuestionIndex = 0;
+
+      fetch("http://127.0.0.1:5500/json/mcq.json")
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (val) {
+          data = val;
+          displayQuestion();
+          updateButtons();
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function displayQuestion() {
+        const value = data[currentQuestionIndex];
+        const display = `
+            <div
+            class="w-[800px] flex flex-col gap-3 h-full border border-gray-400 rounded-md p-2"
+            >
+                <div class="flex gap-3">
+                    <span class="text-gray-600 font-normal text-lg">Question:</span>
+                    <span class="text-gray-800 font-medium text-lg">
+                        ${value.question}
+                    </span>
+                </div>
+                <div class="flex gap-5">
+                    <span class="text-gray-600 font-normal text-lg">Answer:</span>
+                    <div class="flex flex-col gap-3">
+                        ${value.choices
+                          .map(function (val, i) {
+                            return `
+                            <div class="flex gap-3">
+                                <input type="radio" name="mcq" id="select_value_${i}" />
+                                <label for="select_value_${i}" class="text-gray-700 font-medium text-lg">${escapeHtml(val)}</label>
+                            </div>
+                            `;
+                          })
+                          .join("")}
+                    </div>
+                </div>
+            </div>
+            `;
+        document.getElementById("mcq_data").innerHTML = display;
+      }
+
+      function updateButtons() {
+        document.getElementById("prevBtn").disabled =
+          currentQuestionIndex === 0;
+        document.getElementById("nextBtn").disabled =
+          currentQuestionIndex === data.length - 1;
+      }
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          displayQuestion();
+          updateButtons();
+        }
+      });
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        if (currentQuestionIndex < data.length - 1) {
+          currentQuestionIndex++;
+          displayQuestion();
+          updateButtons();
+        }
+      });
+    </script>
+  </body>
+</html>
