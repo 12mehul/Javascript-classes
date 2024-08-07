@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Video Player</title>
+    <style>
+      .slide {
+        left: 50%;
+      }
+    </style>
+  </head>
+  <body class="bg-purple-100 flex items-center justify-center h-screen">
+    <div class="relative mt-5">
+      <video id="myVideo" width="1000">
+        <source src="video_1.mp4" type="video/mp4" />
+      </video>
+      <button
+        id="playPauseBtn"
+        class="switch-btn slide absolute block left-1 bottom-1 text-black p-4 bg-white rounded-md font-semibold text-lg"
+      >
+        <span>Play</span>
+        <span>Pause</span>
+        <span class="switch"></span>
+      </button>
+    </div>
+
+    <!-- javascript -->
+    <script src="./index.js"></script>
+  </body>
+</html>

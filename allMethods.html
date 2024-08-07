@@ -106,7 +106,20 @@
       let date = new Date();
       let month = days[date.getDay()];
       let dateTime = date.getTimezoneOffset();
-      console.log(date.toLocaleDateString("hi-In", options));
+      console.log(date.toLocaleDateString("en-In", options));
+
+      let ab = new Map();
+      let bc = "is is th is the are the";
+      const newVar = bc.split(" ");
+
+      for (let i = 0; i < newVar.length; i++) {
+        if (ab.has(newVar[i]) == false) {
+          ab.set(newVar[i], 1);
+        } else {
+          ab.set(newVar[i], ab.get(newVar[i]) + 1);
+        }
+      }
+      console.log(ab);
     </script>
   </head>
   <body></body>
