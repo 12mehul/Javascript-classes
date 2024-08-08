@@ -66,7 +66,13 @@
                   >
                 </div>
                 <div class="flex gap-3 items-center">
-                  <input type="checkbox" name="react" id="reactCheckbox" />
+                  <input
+                    type="checkbox"
+                    name="react"
+                    id="reactCheckbox"
+                    value="react"
+                    data-id="4"
+                  />
                   <label
                     for="reactCheckbox"
                     class="text-gray-700 font-medium text-lg"
@@ -74,7 +80,13 @@
                   >
                 </div>
                 <div class="flex gap-3 items-center">
-                  <input type="checkbox" name="angular" id="angularCheckbox" />
+                  <input
+                    type="checkbox"
+                    name="angular"
+                    id="angularCheckbox"
+                    value="angular"
+                    data-id="5"
+                  />
                   <label
                     for="angularCheckbox"
                     class="text-gray-700 font-medium text-lg"
@@ -82,7 +94,13 @@
                   >
                 </div>
                 <div class="flex gap-3 items-center">
-                  <input type="checkbox" name="vue" id="vueCheckbox" />
+                  <input
+                    type="checkbox"
+                    name="vue"
+                    id="vueCheckbox"
+                    value="vue"
+                    data-id="6"
+                  />
                   <label
                     for="vueCheckbox"
                     class="text-gray-700 font-medium text-lg"
@@ -123,7 +141,13 @@
                   >
                 </div>
                 <div class="flex gap-3 items-center">
-                  <input type="checkbox" name="node" id="nodeCheckbox" />
+                  <input
+                    type="checkbox"
+                    name="node"
+                    id="nodeCheckbox"
+                    value="node"
+                    data-id="9"
+                  />
                   <label
                     for="nodeCheckbox"
                     class="text-gray-700 font-medium text-lg"
@@ -131,7 +155,13 @@
                   >
                 </div>
                 <div class="flex gap-3 items-center">
-                  <input type="checkbox" name="php" id="phpCheckbox" />
+                  <input
+                    type="checkbox"
+                    name="php"
+                    id="phpCheckbox"
+                    value="php"
+                    data-id="10"
+                  />
                   <label
                     for="phpCheckbox"
                     class="text-gray-700 font-medium text-lg"
@@ -139,7 +169,13 @@
                   >
                 </div>
                 <div class="flex gap-3 items-center">
-                  <input type="checkbox" name="net" id="netCheckbox" />
+                  <input
+                    type="checkbox"
+                    name="net"
+                    id="netCheckbox"
+                    value="net"
+                    data-id="11"
+                  />
                   <label
                     for="netCheckbox"
                     class="text-gray-700 font-medium text-lg"
@@ -167,9 +203,26 @@
         for (let i = 0; i < p.elements.length; i++) {
           if (p.elements[i].type !== "submit") {
             if (p.elements[i].type == "checkbox" && !p.elements[i].dataset.id) {
+              obj[p.elements[i].name] = p.elements[i].checked;
+            } else if (
+              p.elements[i].type == "checkbox" &&
+              p.elements[i].dataset.id
+            ) {
+              if (p.elements[i].checked == true) {
+                obj[p.elements[i].name].push(p.elements[i].value);
+                if (obj[p.elements[i].name]) {
+                  obj[p.elements[i].name].push(p.elements[i].value);
+                } else {
+                  obj[p.elements[i].name] = [];
+                  obj[p.elements[i].name].push(p.elements[i].value);
+                }
+              }
+            } else {
+              obj[p.elements[i].name] = p.elements[i].value;
             }
           }
         }
+        console.log(obj);
       }
     </script>
   </body>
