@@ -18,212 +18,104 @@
       >
         Select Course
       </h2>
-      <form name="abc" id="abc" onsubmit="handleForm(event)">
-        <div id="fullStack" class="flex flex-col gap-3">
-          <div class="flex gap-3 items-center">
-            <input
-              type="checkbox"
-              name="fullStack"
-              id="fullStackCheckbox"
-              value="fullStack"
-              data-id="1"
-            />
-            <label
-              for="fullStackCheckbox"
-              class="text-gray-700 font-medium text-lg"
-              >Full Stack</label
-            >
-          </div>
-          <div class="nested flex flex-col gap-3">
-            <div class="front-end">
+      <div id="fullStack" class="flex flex-col gap-3">
+        <div class="flex gap-3 items-center">
+          <input type="checkbox" id="fullStack" onchange="handleTree(this)" />
+          <label for="fullStack" class="text-gray-700 font-medium text-lg"
+            >Full Stack</label
+          >
+        </div>
+        <div class="nested flex flex-col gap-3">
+          <div class="front-end">
+            <div class="flex gap-3 items-center">
+              <input
+                type="checkbox"
+                id="frontEnd"
+                onchange="handleTree(this)"
+              />
+              <label for="frontEnd" class="text-gray-700 font-medium text-lg"
+                >Front-end</label
+              >
+            </div>
+            <div class="mt-2 nested flex flex-col gap-3">
               <div class="flex gap-3 items-center">
-                <input
-                  type="checkbox"
-                  name="frontEnd"
-                  id="frontEndCheckbox"
-                  value="frontEnd"
-                  data-id="2"
-                />
+                <input type="checkbox" id="javaScript" />
                 <label
-                  for="frontEndCheckbox"
+                  for="javaScript"
                   class="text-gray-700 font-medium text-lg"
-                  >Front-end</label
+                  >JavaScript</label
                 >
               </div>
-              <div class="mt-2 nested flex flex-col gap-3">
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="javaScript"
-                    id="javaScriptCheckbox"
-                    value="javaScript"
-                    data-id="3"
-                  />
-                  <label
-                    for="javaScriptCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >JavaScript</label
-                  >
-                </div>
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="react"
-                    id="reactCheckbox"
-                    value="react"
-                    data-id="4"
-                  />
-                  <label
-                    for="reactCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >React</label
-                  >
-                </div>
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="angular"
-                    id="angularCheckbox"
-                    value="angular"
-                    data-id="5"
-                  />
-                  <label
-                    for="angularCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >Angular</label
-                  >
-                </div>
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="vue"
-                    id="vueCheckbox"
-                    value="vue"
-                    data-id="6"
-                  />
-                  <label
-                    for="vueCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >Vue</label
-                  >
-                </div>
+              <div class="flex gap-3 items-center">
+                <input type="checkbox" id="react" />
+                <label for="react" class="text-gray-700 font-medium text-lg"
+                  >React</label
+                >
+              </div>
+              <div class="flex gap-3 items-center">
+                <input type="checkbox" id="angular" />
+                <label for="angular" class="text-gray-700 font-medium text-lg"
+                  >Angular</label
+                >
+              </div>
+              <div class="flex gap-3 items-center">
+                <input type="checkbox" id="vue" />
+                <label for="vue" class="text-gray-700 font-medium text-lg"
+                  >Vue</label
+                >
               </div>
             </div>
+          </div>
 
-            <div class="back-end">
+          <div class="back-end">
+            <div class="flex gap-3 items-center">
+              <input type="checkbox" id="backEnd" onchange="handleTree(this)" />
+              <label for="backEnd" class="text-gray-700 font-medium text-lg"
+                >Back-end</label
+              >
+            </div>
+            <div class="mt-2 nested flex flex-col gap-3">
               <div class="flex gap-3 items-center">
-                <input
-                  type="checkbox"
-                  name="backEnd"
-                  id="backEndCheckbox"
-                  value="backEnd"
-                  data-id="7"
-                />
-                <label
-                  for="backEndCheckbox"
-                  class="text-gray-700 font-medium text-lg"
-                  >Back-end</label
+                <input type="checkbox" id="python" />
+                <label for="python" class="text-gray-700 font-medium text-lg"
+                  >Python</label
                 >
               </div>
-              <div class="mt-2 nested flex flex-col gap-3">
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="python"
-                    id="pythonCheckbox"
-                    value="python"
-                    data-id="8"
-                  />
-                  <label
-                    for="pythonCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >Python</label
-                  >
-                </div>
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="node"
-                    id="nodeCheckbox"
-                    value="node"
-                    data-id="9"
-                  />
-                  <label
-                    for="nodeCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >Node</label
-                  >
-                </div>
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="php"
-                    id="phpCheckbox"
-                    value="php"
-                    data-id="10"
-                  />
-                  <label
-                    for="phpCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >Php</label
-                  >
-                </div>
-                <div class="flex gap-3 items-center">
-                  <input
-                    type="checkbox"
-                    name="net"
-                    id="netCheckbox"
-                    value="net"
-                    data-id="11"
-                  />
-                  <label
-                    for="netCheckbox"
-                    class="text-gray-700 font-medium text-lg"
-                    >.Net</label
-                  >
-                </div>
+              <div class="flex gap-3 items-center">
+                <input type="checkbox" id="node" />
+                <label for="node" class="text-gray-700 font-medium text-lg"
+                  >Node</label
+                >
+              </div>
+              <div class="flex gap-3 items-center">
+                <input type="checkbox" id="php" />
+                <label for="php" class="text-gray-700 font-medium text-lg"
+                  >Php</label
+                >
+              </div>
+              <div class="flex gap-3 items-center">
+                <input type="checkbox" id="net" />
+                <label for="net" class="text-gray-700 font-medium text-lg"
+                  >.Net</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <input
-          type="submit"
-          class="mt-2 p-2 bg-sky-500 rounded-lg text-white cursor-pointer"
-          value="Save"
-        />
-      </form>
+      </div>
     </div>
 
     <script>
-      function handleForm(e) {
-        let obj = {};
-        e.preventDefault();
-        let p = document.forms["abc"];
+      const handleTree = (e) => {
+        console.log(e.checked);
+        const elements = e.parentElement.querySelectorAll(
+          "input[type='checkbox']"
+        );
 
-        for (let i = 0; i < p.elements.length; i++) {
-          if (p.elements[i].type !== "submit") {
-            if (p.elements[i].type == "checkbox" && !p.elements[i].dataset.id) {
-              obj[p.elements[i].name] = p.elements[i].checked;
-            } else if (
-              p.elements[i].type == "checkbox" &&
-              p.elements[i].dataset.id
-            ) {
-              if (p.elements[i].checked == true) {
-                obj[p.elements[i].name].push(p.elements[i].value);
-                if (obj[p.elements[i].name]) {
-                  obj[p.elements[i].name].push(p.elements[i].value);
-                } else {
-                  obj[p.elements[i].name] = [];
-                  obj[p.elements[i].name].push(p.elements[i].value);
-                }
-              }
-            } else {
-              obj[p.elements[i].name] = p.elements[i].value;
-            }
-          }
-        }
-        console.log(obj);
-      }
+        elements.forEach((element) => {
+          element.checked = e.checked;
+        });
+      };
     </script>
   </body>
 </html>

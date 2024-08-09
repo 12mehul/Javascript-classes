@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="w-full flex flex-col gap-3 items-center justify-center">
+      <h2
+        class="mt-3 flex items-center justify-center text-red-500 font-bold text-4xl"
+      >
+        User Select Checkbox Value
+      </h2>
+      <div class="w-full flex items-center justify-center gap-1">
+        <input
+          type="number"
+          class="w-[50%] mt-3 pl-3 p-2 border border-gray-500 rounded-md outline-none"
+          id="inputVal"
+          placeholder="Enter the value"
+        />
+        <button
+          onclick="updateAllValues()"
+          class="mt-3 p-2 w-16 bg-blue-500 rounded-md text-lg font-medium text-white"
+        >
+          Save
+        </button>
+      </div>
+      <table class="w-[55%] mt-3 border border-gray-500 rounded-md">
+        <thead class="border-b border-gray-500 text-center">
+          <th class="p-3">Checkbox</th>
+          <th>Value</th>
+          <th>Add</th>
+          <th>Sub</th>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-500 text-center">
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>5</td>
+            <td>
+              <button
+                onclick="inc(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-green-500 rounded-md text-lg font-semibold"
+              >
+                +
+              </button>
+            </td>
+            <td>
+              <button
+                onclick="dec(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-red-500 rounded-md text-lg font-semibold"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+          <tr class="border-b border-gray-500 text-center">
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>15</td>
+            <td>
+              <button
+                onclick="inc(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-green-500 rounded-md text-lg font-semibold"
+              >
+                +
+              </button>
+            </td>
+            <td>
+              <button
+                onclick="dec(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-red-500 rounded-md text-lg font-semibold"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+          <tr class="border-b border-gray-500 text-center">
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>25</td>
+            <td>
+              <button
+                onclick="inc(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-green-500 rounded-md text-lg font-semibold"
+              >
+                +
+              </button>
+            </td>
+            <td>
+              <button
+                onclick="dec(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-red-500 rounded-md text-lg font-semibold"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+          <tr class="border-b border-gray-500 text-center">
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>35</td>
+            <td>
+              <button
+                onclick="inc(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-green-500 rounded-md text-lg font-semibold"
+              >
+                +
+              </button>
+            </td>
+            <td>
+              <button
+                onclick="dec(this)"
+                class="m-2 w-8 h-8 bg-white border-2 border-red-500 rounded-md text-lg font-semibold"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const inc = (e) => {
+        e.parentElement.previousElementSibling.innerHTML =
+          +e.parentElement.previousElementSibling.innerHTML + 1;
+      };
+
+      const dec = (e) => {
+        e.parentElement.previousElementSibling.previousElementSibling.innerHTML =
+          +e.parentElement.previousElementSibling.previousElementSibling
+            .innerHTML - 1;
+      };
+
+      const updateAllValues = () => {
+        let p =
+          document.querySelectorAll("input[type='checkbox']:checked").length ==
+          0
+            ? document.querySelectorAll("input[type='checkbox']")
+            : document.querySelectorAll("input[type='checkbox']:checked");
+
+        let a = +document.getElementById("inputVal").value;
+
+        p.forEach((element) => {
+          element.parentElement.nextElementSibling.innerHTML =
+            +element.parentElement.nextElementSibling.innerHTML + a;
+        });
+      };
+    </script>
+  </body>
+</html>
