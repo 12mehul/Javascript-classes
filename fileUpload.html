@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flex flex-col gap-3 items-center justify-center mt-2">
+      <h2 class="text-2xl font-semibold text-red-600">File Upload</h2>
+      <input
+        class="w-96 border border-gray-400 rounded p-3 cursor-pointer"
+        type="file"
+        id="fileName"
+        onchange="handleFile(event)"
+        multiple
+      />
+    </div>
+    <script>
+      let imgObjects = JSON.parse(localStorage.getItem("imgObjects")) || [];
+
+      function handleFile(e) {
+        let files = e.target.files;
+
+        Array.from(files).forEach((file, index) => {
+          toBase64(file)
+            .then((base64) => {
+              let imgObj = {
+                id: imgObjects.length + 1 + index,
+                images: base64,
+                likes: 0,
+              };
+
+              imgObjects.push(imgObj);
+              localStorage.setItem("imgObjects", JSON.stringify(imgObjects));
+              console.log(imgObjects);
+            })
+            .catch((err) => console.log(err));
+        });
+      }
+
+      const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+        });
+    </script>
+  </body>
+</html>

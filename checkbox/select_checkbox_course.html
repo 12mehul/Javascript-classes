@@ -39,7 +39,11 @@
             </div>
             <div class="mt-2 nested flex flex-col gap-3">
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="javaScript" />
+                <input
+                  type="checkbox"
+                  id="javaScript"
+                  onchange="handleTree(this)"
+                />
                 <label
                   for="javaScript"
                   class="text-gray-700 font-medium text-lg"
@@ -47,19 +51,23 @@
                 >
               </div>
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="react" />
+                <input type="checkbox" id="react" onchange="handleTree(this)" />
                 <label for="react" class="text-gray-700 font-medium text-lg"
                   >React</label
                 >
               </div>
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="angular" />
+                <input
+                  type="checkbox"
+                  id="angular"
+                  onchange="handleTree(this)"
+                />
                 <label for="angular" class="text-gray-700 font-medium text-lg"
                   >Angular</label
                 >
               </div>
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="vue" />
+                <input type="checkbox" id="vue" onchange="handleTree(this)" />
                 <label for="vue" class="text-gray-700 font-medium text-lg"
                   >Vue</label
                 >
@@ -76,25 +84,29 @@
             </div>
             <div class="mt-2 nested flex flex-col gap-3">
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="python" />
+                <input
+                  type="checkbox"
+                  id="python"
+                  onchange="handleTree(this)"
+                />
                 <label for="python" class="text-gray-700 font-medium text-lg"
                   >Python</label
                 >
               </div>
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="node" />
+                <input type="checkbox" id="node" onchange="handleTree(this)" />
                 <label for="node" class="text-gray-700 font-medium text-lg"
                   >Node</label
                 >
               </div>
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="php" />
+                <input type="checkbox" id="php" onchange="handleTree(this)" />
                 <label for="php" class="text-gray-700 font-medium text-lg"
                   >Php</label
                 >
               </div>
               <div class="flex gap-3 items-center">
-                <input type="checkbox" id="net" />
+                <input type="checkbox" id="net" onchange="handleTree(this)" />
                 <label for="net" class="text-gray-700 font-medium text-lg"
                   >.Net</label
                 >
