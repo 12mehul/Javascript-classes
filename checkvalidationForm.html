@@ -62,68 +62,84 @@
       </button>
     </div>
     <script>
+      const nameRegex = /^[a-zA-Z]+$/;
+      const uppercaseRegex = /(?=.*[A-Z])/;
+      const lowercaseRegex = /(?=.*[a-z])/;
+      const specialCharRegex = /(?=.*[@#$%^&-+=()])/;
+      const numberRegex = /(?=.*[0-9])/;
+      const noWhitespaceRegex = /(?=\S+$)/;
+      const lengthRegex = /.{8,15}/;
+
       function isMatchedPass() {
         let pass = document.getElementById("password").value;
         let confPass = document.getElementById("confirmPassword").value;
         return pass === confPass;
       }
 
+      function validatePassword(value) {
+        if (!uppercaseRegex.test(value)) {
+          return "Password must contain at least one uppercase letter";
+        } else if (!lowercaseRegex.test(value)) {
+          return "Password must contain at least one lowercase letter";
+        } else if (!specialCharRegex.test(value)) {
+          return "Password must contain at least one special character";
+        } else if (!numberRegex.test(value)) {
+          return "Password must contain at least one numeric digit";
+        } else if (!noWhitespaceRegex.test(value)) {
+          return "Password must not contain any whitespace";
+        } else if (!lengthRegex.test(value)) {
+          return "Password must be 8-15 characters long";
+        }
+        return "";
+      }
+
       function checkValidation(name, value) {
-        const nameRegex = /^[a-zA-Z]+$/;
-        const passRegex =
-          /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\S+$).{8,15}$/;
+        if (!value) {
+          return `Please enter ${name
+            .replace(/([A-Z])/g, " $1")
+            .toLowerCase()}`;
+        }
 
         switch (name) {
           case "firstName":
-            if (!value) {
-              return "Please Enter First Name";
-            } else if (!nameRegex.test(value)) {
-              return "First Name should contain only letters";
+            if (!nameRegex.test(value)) {
+              return "First name should contain only letters";
             }
             break;
           case "lastName":
-            if (!value) {
-              return "Please Enter Last Name";
-            } else if (!nameRegex.test(value)) {
-              return "Last Name should contain only letters";
+            if (!nameRegex.test(value)) {
+              return "Last name should contain only letters";
             }
             break;
           case "password":
-            if (!value) {
-              return "Please Enter Password";
-            } else if (!passRegex.test(value)) {
-              return "Password must be 8-15 characters long, include at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
-            }
-            break;
+            return validatePassword(value);
           case "confirmPassword":
-            if (!value) {
-              return "Please Enter Confirm Password";
-            } else if (!passRegex.test(value)) {
-              return "Password must be 8-15 characters long, include at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+            const passwordError = validatePassword(value);
+            if (passwordError) {
+              return passwordError;
             } else if (!isMatchedPass()) {
-              return "Password do not matched";
+              return "Passwords do not match";
             }
             break;
           default:
-            console.log("Invalid input");
-            break;
+            console.log("Invalid input name");
         }
         return "";
       }
 
       function manageValidation() {
-        let p = document.getElementsByTagName("input");
+        let inputs = document.querySelectorAll("input");
 
-        for (let i = 0; i < p.length; i++) {
-          p[i].addEventListener("change", function () {
-            const message = checkValidation(p[i].name, p[i].value);
-            document.getElementById(`error-${p[i].name}`).innerHTML = message;
+        inputs.forEach((input) => {
+          input.addEventListener("change", function () {
+            const message = checkValidation(input.name, input.value);
+            document.getElementById(`error-${input.name}`).innerHTML = message;
           });
 
           // Validate immediately and show error message if any
-          const message = checkValidation(p[i].name, p[i].value);
-          document.getElementById(`error-${p[i].name}`).innerHTML = message;
-        }
+          const message = checkValidation(input.name, input.value);
+          document.getElementById(`error-${input.name}`).innerHTML = message;
+        });
       }
 
       function performValidation() {
