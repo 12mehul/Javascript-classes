@@ -41,6 +41,7 @@
             class="form-control"
             placeholder="Enter Password"
             name="password"
+            id="password"
           />
           <span id="error-password" class="text-danger"></span>
         </div>
@@ -51,6 +52,7 @@
             class="form-control"
             placeholder="Enter Confirm Password"
             name="confirmPassword"
+            id="confirmPassword"
           />
           <span id="error-confirmPassword" class="text-danger"></span>
         </div>
@@ -60,13 +62,10 @@
       </button>
     </div>
     <script>
-      function performValidation() {
-        let p = document.getElementsByTagName("input");
-
-        for (let i = 0; i < p.length; i++) {
-          const message = checkValidation(p[i].name, p[i].value);
-          document.getElementById(`error-${p[i].name}`).innerHTML = message;
-        }
+      function isMatchedPass() {
+        let pass = document.getElementById("password").value;
+        let confPass = document.getElementById("confirmPassword").value;
+        return pass === confPass;
       }
 
       function checkValidation(name, value) {
@@ -101,6 +100,8 @@
               return "Please Enter Confirm Password";
             } else if (!passRegex.test(value)) {
               return "Password must be 8-15 characters long, include at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+            } else if (!isMatchedPass()) {
+              return "Password do not matched";
             }
             break;
           default:
@@ -108,6 +109,25 @@
             break;
         }
         return "";
+      }
+
+      function manageValidation() {
+        let p = document.getElementsByTagName("input");
+
+        for (let i = 0; i < p.length; i++) {
+          p[i].addEventListener("change", function () {
+            const message = checkValidation(p[i].name, p[i].value);
+            document.getElementById(`error-${p[i].name}`).innerHTML = message;
+          });
+
+          // Validate immediately and show error message if any
+          const message = checkValidation(p[i].name, p[i].value);
+          document.getElementById(`error-${p[i].name}`).innerHTML = message;
+        }
+      }
+
+      function performValidation() {
+        manageValidation();
       }
     </script>
   </body>
